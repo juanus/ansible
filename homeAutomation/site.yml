@@ -1,0 +1,38 @@
+---
+## This playbook deploys the whole application stack in this site.
+
+# Apply common configuration to all hosts
+- hosts: all
+
+  roles:
+  - common
+
+# Configure and deploy database servers.
+
+# Configure and deploy the Home Automation servers. 
+- hosts: homeAutomation
+
+  roles:
+  - domoticz
+  - homeAutomation
+
+  tags:
+  - HA
+
+# Configure and deploy File Servers.
+- hosts: fileServers
+
+  roles:
+  - fileServer
+
+  tags:
+  - FS
+
+# Configure and deploy the NEMS monitoring node(s).
+- hosts: monitoring
+
+  roles:
+  - nems
+
+  tags:
+  - monitoring
